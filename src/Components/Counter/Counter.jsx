@@ -1,15 +1,40 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import Controls from './Controls.jsx';
+import Value from './Value.jsx';
 
 class Counter extends React.Component {
+  static defaultProps = {
+    initialValue: 0,
+  };
+  static propTypes = {};
+
+  state = {
+    value: this.props.initialValue,
+  };
+
+  handleIncrment = () => {
+    this.setState(prevState => {
+      return {
+        value: prevState.value + 1,
+      };
+    });
+  };
+  handleDecrement = () => {
+    this.setState(prevState => {
+      return {
+        value: prevState.value - 1,
+      };
+    });
+  };
   render() {
     return (
       <div className="Counter">
-        <span className="Counter__value">0</span>
-        <div className="Counter__controls">
-          <button type="button">Увеличить на 1</button>
-          <button type="button">Уменьшить на 1</button>
-        </div>
+        <Value value={this.state.value} />
+        <Controls
+          onIncrement={this.handleIncrment}
+          onDecrement={this.handleDecrement}
+        />
       </div>
     );
   }
