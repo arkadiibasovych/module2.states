@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import s from './Counter.module.css';
 import Controls from './Controls.jsx';
 import Value from './Value.jsx';
 
@@ -29,7 +30,7 @@ class Counter extends React.Component {
   };
   render() {
     return (
-      <div className="Counter">
+      <div className={s.Counter}>
         <Value value={this.state.value} />
         <Controls
           onIncrement={this.handleIncrment}
