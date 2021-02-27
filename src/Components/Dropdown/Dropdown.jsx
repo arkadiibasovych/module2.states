@@ -24,7 +24,7 @@ class Dropdown extends Component {
           {this.state.visible ? 'Скрыть' : 'Показать'}
         </button>
 
-        {this.state.visible && <Counter />}
+        {this.state.visible && <Counter initialValue={0} />}
       </div>
     );
   }
