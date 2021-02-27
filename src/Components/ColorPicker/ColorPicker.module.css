@@ -1,5 +1,4 @@
 .ColorPicker {
-  width: 400px;
   padding: 10px;
 }
 
@@ -12,11 +11,13 @@
   width: 40px;
   height: 40px;
   margin: 4px;
-  transition: transform 250ms linear;
+
   border: none;
   outline: none;
+
+  transition: transform 250ms linear;
 }
 
-.ColorPicker__option--active {
-  transform: scale(1.1);
+.ColorPicker__option__active {
+  transform: scale(1.2);
 }

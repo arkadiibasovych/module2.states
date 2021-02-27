@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import s from './Dropdown.module.css';
-import Counter from '../Counter/Counter';
+import Counter from '../Counter';
 
 class Dropdown extends Component {
   state = {
@@ -14,6 +14,8 @@ class Dropdown extends Component {
   };
 
   render() {
+    const { visible } = this.state;
+
     return (
       <div className={s.Dropdown}>
         <button
@@ -21,10 +23,10 @@ class Dropdown extends Component {
           className={s.Dropdown__togle}
           onClick={this.toggle}
         >
-          {this.state.visible ? 'Скрыть' : 'Показать'}
+          {visible ? 'Скрыть' : 'Показать'}
         </button>
 
-        {this.state.visible && <Counter initialValue={0} />}
+        {visible && <Counter initialValue={0} />}
       </div>
     );
   }

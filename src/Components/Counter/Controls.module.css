@@ -13,6 +13,10 @@
   transition: box-shadow 250ms linear;
 }
 
+.Counter__controls > button:first-child {
+  margin-right: 10px;
+}
+
 .Counter__controls > button:active {
   box-shadow: 2px 5px 2px 0 rgb(0 0 0 / 0.5);
 }
