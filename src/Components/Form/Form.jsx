@@ -102,7 +102,9 @@ class Form extends Component {
 
         <br />
 
-        <button type="submit">Отправить</button>
+        <button type="submit" disabled={!this.state.licence}>
+          Отправить
+        </button>
       </form>
     );
   }
