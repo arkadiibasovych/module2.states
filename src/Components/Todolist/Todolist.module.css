@@ -1,0 +1,31 @@
+ul {
+  padding-left: 10px;
+}
+.list_item {
+  width: 270px;
+  padding: 10px;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.list_item:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.description {
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.delete_button {
+  background: none;
+  color: orange;
+  border: 1px orange solid;
+  outline: none;
+}
+
+.delete_button:active {
+  color: #fff;
+  background: orange;
+}
