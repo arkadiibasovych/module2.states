@@ -26,6 +26,11 @@ class App extends Component {
       todos: prevState.todos.filter(todo => todo.id !== todoId),
     }));
   };
+
+  formSubmitHendler = data => {
+    console.log(data);
+  };
+
   render() {
     const { todos } = this.state;
 
@@ -44,7 +49,7 @@ class App extends Component {
           <p>Количество выполненных: {completedTodosCount}</p>
         </div>
         <Todolist todos={todos} onDeleteTodo={this.deleteTodo} />
-        <Form />
+        <Form onSubmit={this.formSubmitHendler} />
       </>
     );
   }
