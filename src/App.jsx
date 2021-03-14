@@ -27,9 +27,25 @@ class App extends Component {
     showModal: false,
   };
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
-  };
+  componentDidMount() {
+    console.log('App componentDidMount');
+
+    const todos = localStorage.getItem('todos');
+
+    const parsedTodos = JSON.parse(todos);
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
@@ -72,25 +88,9 @@ class App extends Component {
     return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
   };
 
-  componentDidMount() {
-    console.log('App componentDidMount');
-
-    const todos = localStorage.getItem('todos');
-
-    const parsedTodos = JSON.parse(todos);
-
-    if (parsedTodos) {
-      this.setState({ todos: parsedTodos });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('App componentDidUpdate');
-
-    if (this.state.todos !== prevState.todos) {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos));
-    }
-  }
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
+  };
 
   render() {
     const { todos, filter, showModal } = this.state;
@@ -103,9 +103,25 @@ class App extends Component {
 
     return (
       <>
-        {showModal && <Modal />}
+        <button type="button" onClick={this.toggleModal}>
+          Open modal
+        </button>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <h1>This is so serios modal</h1>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum
+              nulla molestiae quisquam rerum rem fugit a quis ipsam, quidem
+              explicabo. Dolores quisquam, incidunt rem molestias tenetur
+              sapiente necessitatibus accusantium deleniti.
+            </p>
+            <button type="button" onClick={this.toggleModal}>
+              Close modal
+            </button>
+          </Modal>
+        )}
 
-        {/* <Dropdown />
+        <Dropdown />
         <ColorPicker options={colorPickerOptions} />
         <div>
           <p>Общее количество: {totalTodoCount}</p>
@@ -120,7 +136,7 @@ class App extends Component {
         />
         <Form onSubmit={this.formSubmitHendler} />
 
-        <TodoEditor onSubmit={this.adTodo} /> */}
+        <TodoEditor onSubmit={this.adTodo} />
       </>
     );
   }
