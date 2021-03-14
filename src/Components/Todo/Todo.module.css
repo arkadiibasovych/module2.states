@@ -1,0 +1,18 @@
+
+
+.description {
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.delete_button {
+  background: none;
+  color: orange;
+  border: 1px orange solid;
+  outline: none;
+}
+
+.delete_button:active {
+  color: #fff;
+  background: orange;
+}
