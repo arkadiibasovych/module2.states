@@ -9,6 +9,7 @@ import Form from './Components/Form';
 import TodoEditor from './Components/Todoeditor';
 import shortid from 'shortid';
 import Filter from './Components/Filter';
+import Modal from './Components/Modal';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -23,6 +24,11 @@ class App extends Component {
   state = {
     todos: initialTodos,
     filter: '',
+    showModal: false,
+  };
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   deleteTodo = todoId => {
@@ -87,7 +93,7 @@ class App extends Component {
   }
 
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, showModal } = this.state;
 
     const totalTodoCount = todos.length;
 
@@ -97,7 +103,9 @@ class App extends Component {
 
     return (
       <>
-        <Dropdown />
+        {showModal && <Modal />}
+
+        {/* <Dropdown />
         <ColorPicker options={colorPickerOptions} />
         <div>
           <p>Общее количество: {totalTodoCount}</p>
@@ -112,7 +120,7 @@ class App extends Component {
         />
         <Form onSubmit={this.formSubmitHendler} />
 
-        <TodoEditor onSubmit={this.adTodo} />
+        <TodoEditor onSubmit={this.adTodo} /> */}
       </>
     );
   }
