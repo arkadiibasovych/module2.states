@@ -1,4 +1,5 @@
 import s from './Todolist.module.css';
+
 const Todolist = ({ todos, onDeleteTodo, onToggleCompleted, completed }) => (
   <ul className={s.list}>
     {todos.map(({ id, text }) => (
